@@ -1,0 +1,37 @@
+meta:
+  name: absa_v1
+  version: "1.0"
+  description: >-
+    Simple TOON ABSA prompt. Produces compact, line-based output.
+    The parser only accepts lines that start with `L:`.
+  author: hanife kaptan
+  created: 2026-01-05
+
+template: |
+  # TOON ABSA
+  # 1) Return ONLY lines beginning with `L:`. No extra commentary or text.
+  # 2) Input lines are provided as: `U:<id>|<comment>|<language>`
+  # 3) For each `U:` return EXACTLY one `L:` line in TOON format:
+  #    L:<id>|TERM~SENT;;TERM2~SENT2
+  # 4) Do NOT include evidence/excerpts in the output. Only return terms and sentiments.
+  # 5) If an item has NO aspects, return an empty aspects part: `L:<id>|`
+  # 6) Output labels and format:
+  #    - For sentiment, return exactly one of: `positive`, `negative`, `neutral` (use these English tokens).
+  #    - For each input line `U:` produce exactly one `L:` line (same order).
+  #    - Avoid extra commentary or explanation; return ONLY the `L:` lines.
+  {% for item in items %}
+  U:{{ item.id }}|{{ item.comment }}|{{ item.language }}
+  {% endfor %}
+
+examples:
+  - name: simple_example
+    description: Kısa örnek
+    input_lines: |
+      U:1|Batarya süresi mükemmel ama ekran karanlık.|tr
+    expected_lines: |
+      L:1|batarya~positive;;ekran~negative
+
+notes: |
+  - Use compact TOON without evidence: `L:<id>|TERM~SENT;;...`.
+  - Sentiment tokens must be exactly one of: `positive`, `negative`, `neutral`.
+  - After parsing, validate that outputs follow rules; on failure retry once with a corrective prompt.
