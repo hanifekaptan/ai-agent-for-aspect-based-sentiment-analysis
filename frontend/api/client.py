@@ -4,10 +4,11 @@ Handles all communication with the backend API.
 """
 import streamlit as st
 import requests
+import os
 
 
-# Configuration
-API_BASE_URL = "http://127.0.0.1:8000"
+# Configuration - supports both local and HF Spaces
+API_BASE_URL = os.getenv('API_BASE_URL', 'http://127.0.0.1:8000')
 ANALYZE_ENDPOINT = f"{API_BASE_URL}/analyze"
 
 
