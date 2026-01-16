@@ -5,6 +5,7 @@ AI Agent for ABSA is a full-featured AI agent that detects product or service fe
 ## 🌐 Links
 
 - **Live Demo:** [HuggingFace Spaces](https://huggingface.co/spaces/hanifekaptan/ai-agent-for-aspect-based-sentiment-analysis)
+- **Documentation**: [GitHub Pages](https://hanifekaptan.github.io/ai-agent-for-aspect-based-sentiment-analysis/)
 - **GitHub Repository:** [hanifekaptan/ai-agent-for-aspect-based-sentiment-analysis](https://github.com/hanifekaptan/ai-agent-for-aspect-based-sentiment-analysis)
 
 ## ✨ Features
